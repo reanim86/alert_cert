@@ -27,19 +27,20 @@ def work_google():
             month = timedelta(days=31)
             if date_delta <= month:
                 head = worksheet.get('A1:I1')
-                print(head)
                 val = worksheet.get(f'A{n}:I{n}')
-                print(val)
-                result.append(val)
+                r = dict(zip(head[0], val[0]))
+                result.append(r)
         n += 1
     return result
 
 if __name__ == '__main__':
     chat_id = '64619556'
-    cert = work_google()
-    # if cert:
-    #     text = f'Скоро закончатся сертификат(ы): {work_google()}'
-    # else:
-    #     text = 'В течении ближайшего месяца нет заканчивающихся сертификатов'
-    # send_mes_telebot(text, chat_id)
-    # print(work_google())
+    certs = work_google()
+    if certs:
+        text = 'Скоро закончатся сертификат(ы):'
+        send_mes_telebot(text, chat_id)
+        for cert in certs:
+            send_mes_telebot(f'{cert}', chat_id)
+    else:
+        text = 'В течении ближайшего месяца нет заканчивающихся сертификатов'
+        send_mes_telebot(text, chat_id)

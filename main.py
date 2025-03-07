@@ -2,7 +2,6 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime, date, timedelta
 from telegram import send_mes_telebot
-# from dateutil.relativedelta import relativedelta
 
 def work_google():
     # Определяем область доступа
